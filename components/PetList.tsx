@@ -1,4 +1,5 @@
 import {
+  Button,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,11 +9,17 @@ import {
 import React, { useState } from "react";
 import pets from "@/data/pets";
 import PetItem from "./PetItem";
+import { fetchAllPets } from "@/app/api/Pets";
 
 const PetList = () => {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("");
   const [displayPets, setDisplayPets] = useState(pets);
+
+  const GetPets = async () => {
+    const data = await fetchAllPets();
+    setDisplayPets(data);
+  };
 
   const petList = displayPets
     .filter((pet) => pet.name.toLowerCase().includes(search.toLowerCase()))
@@ -64,7 +71,9 @@ const PetList = () => {
           <Text>Rabbit</Text>
         </TouchableOpacity>
       </ScrollView>
-
+      <TouchableOpacity onPress={GetPets}>
+        <Text>Get All Pets</Text>
+      </TouchableOpacity>
       {/* Pet List */}
       {petList}
     </ScrollView>
