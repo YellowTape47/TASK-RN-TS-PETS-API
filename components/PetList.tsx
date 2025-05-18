@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import pets from "@/data/pets";
 import PetItem from "./PetItem";
-import { fetchAllPets } from "@/app/api/Pets";
+import { fetchAllPets } from "@/api/pets";
 
 const PetList = () => {
   const [search, setSearch] = useState("");
